@@ -364,5 +364,5 @@ astAnnotationToSchemaAnnotation gtype schemaTypeName =
   case gtype of
     AST.TypeNamed _ -> TypeNamed schemaTypeName
     AST.TypeList (AST.ListType astTypeName) -> TypeList (ListType $ astAnnotationToSchemaAnnotation astTypeName schemaTypeName)
-    AST.TypeNonNull (AST.NonNullTypeNamed _) -> TypeNonNull (NonNullTypeNamed schemaTypeName)
-    AST.TypeNonNull (AST.NonNullTypeList (AST.ListType astTypeName)) -> TypeNonNull (NonNullTypeList (ListType (astAnnotationToSchemaAnnotation astTypeName schemaTypeName)))
+    AST.TypeNonNull (AST.NonNullType _) -> TypeNonNull (NonNullTypeNamed schemaTypeName)
+    AST.TypeNonNull (AST.NonNullType (AST.TypeList (AST.ListType astTypeName))) -> TypeNonNull (NonNullTypeList (ListType (astAnnotationToSchemaAnnotation astTypeName schemaTypeName)))

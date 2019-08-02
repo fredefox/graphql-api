@@ -881,7 +881,9 @@ formatErrors errors = formatError <$> errors
 
 -- | A 'Validator' is a value that can either be valid or have a non-empty
 -- list of errors.
-newtype Validator e a = Validator { runValidator :: Either (NonEmpty e) a } deriving (Eq, Show, Functor, Monad)
+newtype Validator e a = Validator { runValidator :: Either (NonEmpty e) a } deriving (Eq, Show, Functor)
+
+deriving newtype instance Monad (Validator e)
 
 -- | Throw a single validation error.
 throwE :: e -> Validator e a

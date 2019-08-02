@@ -89,9 +89,9 @@ import GraphQL.API
   )
 import GraphQL.Value
   ( pattern ValueEnum
-  , unName
   , ToValue(..)
   )
+import GraphQL.Internal.Name (Name(unName))
 
 -- | A command that can be given to a 'Dog'.
 --

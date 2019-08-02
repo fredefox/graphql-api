@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.20.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b3da6c729f0fa19c9ad82cb7e45f616850463bcc1654b9cd4797e34f6685ebd8
+-- hash: d613b0fe35564bd8fdeec87026cfcbbdeb486f7a3b7895b5d8a130e443dd3d9a
 
 name:          tutorial
 version:       0.0.1
@@ -11,7 +13,6 @@ license:       Apache
 license-file:  LICENSE
 maintainer:    tehunger@gmail.com, Jonathan M. Lange <jml@mumak.net>
 build-type:    Simple
-cabal-version: >= 1.10
 
 library
   default-extensions: NoImplicitPrelude

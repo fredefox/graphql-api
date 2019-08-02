@@ -183,16 +183,16 @@ data GType = TypeNamed NamedType
 instance HasName GType where
   getName (TypeNamed (NamedType n)) = n
   getName (TypeList (ListType t)) = getName t
-  getName (TypeNonNull (NonNullTypeNamed (NamedType n))) = n
-  getName (TypeNonNull (NonNullTypeList (ListType l))) = getName l
+  getName (TypeNonNull t) = getName t
 
 newtype NamedType = NamedType Name deriving (Eq, Ord, Show)
 
 newtype ListType = ListType GType deriving (Eq, Ord, Show)
 
-data NonNullType = NonNullTypeNamed NamedType
-                 | NonNullTypeList  ListType
-                   deriving (Eq, Ord, Show)
+newtype NonNullType = NonNullType GType deriving (Eq, Ord, Show)
+
+instance HasName NonNullType where
+  getName (NonNullType t) = getName t
 
 -- * Type definition
 

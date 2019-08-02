@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e921bbdc9931b5b0b16603d36a3252522602c736862259ef71abdecf046541e2
+-- hash: 219c1a4a557d9bd85b909bf3b6b5647602b570408211f2570f1a666c4f4fb295
 
 name:           graphql-api
 version:        0.3.0
@@ -22,7 +24,6 @@ maintainer:     Jonathan M. Lange <jml@mumak.net>, Tom Hunger <tehunger@gmail.co
 license:        Apache
 license-file:   LICENSE.Apache-2.0
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     CHANGELOG.rst
 

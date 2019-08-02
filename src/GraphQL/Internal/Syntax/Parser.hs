@@ -6,6 +6,7 @@ module GraphQL.Internal.Syntax.Parser
   ( queryDocument
   , schemaDocument
   , value
+  , inputObjectTypeDefinition
   ) where
 
 import Protolude hiding (option)
@@ -32,6 +33,7 @@ import Data.Attoparsec.Text
 import qualified GraphQL.Internal.Syntax.AST as AST
 import GraphQL.Internal.Syntax.Tokens (tok, whiteSpace)
 import GraphQL.Internal.Name (nameParser)
+import Data.Attoparsec.Text (parseOnly)
 
 -- * Document
 
@@ -224,8 +226,10 @@ listType :: Parser AST.ListType
 listType = AST.ListType <$> brackets type_
 
 nonNullType :: Parser AST.NonNullType
-nonNullType = AST.NonNullTypeNamed <$> namedType <* tok "!"
-          <|> AST.NonNullTypeList  <$> listType  <* tok "!"
+-- nonNullType = AST.NonNullTypeNamed <$> namedType <* tok "!"
+--           <|> AST.NonNullTypeList  <$> listType  <* tok "!"
+--           <?> "nonNullType error!"
+nonNullType = AST.NonNullType <$> type_ <* tok "!"
           <?> "nonNullType error!"
 
 -- * Type Definition

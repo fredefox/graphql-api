@@ -10,6 +10,7 @@ import Text.RawString.QQ (r)
 import Test.Hspec.QuickCheck (prop)
 import Test.QuickCheck (arbitrary, forAll, resize)
 import Test.Hspec
+import Control.Monad.Fail (fail)
 
 import GraphQL.Value (String(..))
 import GraphQL.Internal.Name (Name)
@@ -238,7 +239,7 @@ spec = describe "AST" $ do
                                 (AST.TypeList 
                                   (AST.ListType 
                                     (AST.TypeNonNull
-                                      (AST.NonNullTypeNamed (AST.NamedType "Home"))
+                                      (AST.NonNullType (AST.NamedType "Home"))
                                     )
                                   )
                                 )
@@ -315,3 +316,35 @@ spec = describe "AST" $ do
                             ])))
                      ]
       parsed `shouldBe` expected
+    it "parses input declarations" $ do
+      let query = [r|
+                    input A {
+                      b: B
+                    }
+                  |]
+      parsed <- either fail pure $ parseOnly Parser.inputObjectTypeDefinition query
+      let expected = AST.InputObjectTypeDefinition "A" [AST.InputValueDefinition "b" (AST.TypeNamed (AST.NamedType "B")) Nothing]
+      parsed `shouldBe` expected
+    -- it "parses input declarations" $ do
+    --   let query = [r|
+    --                 input A {
+    --                   b: B
+    --                 }
+    --               |]
+    --   let Right parsed = parseOnly Parser.queryDocument query
+    --   let expected = AST.QueryDocument
+    --                  [AST.DefinitionFragment (AST.FragmentDefinition "dogTest"
+    --                     (AST.NamedType "Dog") [] [
+    --                       AST.SelectionField (AST.Field Nothing "name" [] [] [])
+    --                     ]),
+    --                     AST.DefinitionOperation
+    --                      (AST.Query
+    --                        (AST.Node Nothing
+    --                         [] []
+    --                         [AST.SelectionField
+    --                           (AST.Field Nothing dog [] []
+    --                             [AST.SelectionFragmentSpread (AST.FragmentSpread "dogTest" [])
+    --                             ])    
+    --                         ]))
+    --                  ]
+    --   parsed `shouldBe` expected

@@ -115,12 +115,12 @@ spec = describe "Type" $ do
     let typeDefinitionScalar = (TypeDefinitionScalar (ScalarTypeDefinition "ScalarType"))
     astAnnotationToSchemaAnnotation (
       AST.TypeNonNull (
-        AST.NonNullTypeList (
+        AST.NonNullType (AST.TypeList $
           AST.ListType (
             AST.TypeList (
               AST.ListType (
                 AST.TypeNonNull (
-                  AST.NonNullTypeNamed (AST.NamedType "ScalarType")
+                  AST.NonNullType (AST.TypeNamed $ AST.NamedType "ScalarType")
       ))))))) typeDefinitionScalar `shouldBe` (
         TypeNonNull (
           NonNullTypeList (

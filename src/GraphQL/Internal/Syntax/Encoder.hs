@@ -13,7 +13,9 @@ import qualified Data.Aeson as Aeson
 import Data.Text (Text, cons, intercalate, pack, snoc)
 
 import qualified GraphQL.Internal.Syntax.AST as AST
-import GraphQL.Internal.Name (unName)
+import GraphQL.Internal.Name (Name(Name))
+
+unName (Name n) = n
 
 -- * Document
 
@@ -153,8 +155,8 @@ listType :: AST.ListType -> Text
 listType (AST.ListType ty) = brackets (type_ ty)
 
 nonNullType :: AST.NonNullType -> Text
-nonNullType (AST.NonNullTypeNamed (AST.NamedType x)) = unName x <> "!"
-nonNullType (AST.NonNullTypeList  x) = listType x <> "!"
+nonNullType (AST.NonNullType x) = unName (getName x) <> "!"
+-- nonNullType (AST.NonNullTypeList  x) = listType x <> "!"
 
 typeDefinition :: AST.TypeDefinition -> Text
 typeDefinition (AST.TypeDefinitionObject        x) = objectTypeDefinition x

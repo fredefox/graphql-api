@@ -91,7 +91,7 @@ spec = describe "Validation" $ do
                       (AST.Node Nothing
                        [ AST.VariableDefinition
                            (AST.Variable "atOtherHomes")
-                           (AST.TypeNonNull (AST.NonNullTypeList (AST.ListType 
+                           (AST.TypeNonNull (AST.NonNullType (AST.TypeList $ AST.ListType 
                             (AST.TypeList (AST.ListType (AST.TypeNamed (AST.NamedType "Boolean"))))
                            )))
                            Nothing

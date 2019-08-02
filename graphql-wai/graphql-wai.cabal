@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.20.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 12d030d800c1c036c89a9464dd8de8b05f9f6dc28e0faae9d2b105b2b120460e
+-- hash: 5af612d85a4e740de0cc4e8dc96042a58ab371b34a7e95cbf34d269e599efa41
 
 name:           graphql-wai
 version:        0.1.0
@@ -12,7 +14,6 @@ homepage:       https://github.com/jml/graphql-api#readme
 bug-reports:    https://github.com/jml/graphql-api/issues
 license:        Apache
 build-type:     Simple
-cabal-version:  >= 1.10
 
 source-repository head
   type: git
